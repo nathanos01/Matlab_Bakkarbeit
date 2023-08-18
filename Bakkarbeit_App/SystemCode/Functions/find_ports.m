@@ -13,15 +13,14 @@ list_of_avail_ports = {};
 
 try
     % Try to retrieve the list of all available COM ports
-    freeports = serialportlist("all");
+    list_of_avail_ports = serialportlist("all");
     
     % Only display available COM ports
-    if ~isempty(freeports)
-        list_of_avail_ports = freeports;
+    if isempty(list_of_avail_ports)
+       warning('No COM port is available');
     end
 catch
-    % Handle the case when no COM ports are available
-    warning('No COM port is available');
+    warning('An error has occurred');
 end
 
 end
